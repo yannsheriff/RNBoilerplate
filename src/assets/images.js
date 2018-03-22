@@ -1,7 +1,7 @@
 const images = {
-    gif: require('./img/react.gif'),
+    astronaut: require('./img/astronaut.gif'),
     slice: require('./img/slice.gif'),
-    logo: require('./img/logo.png'),
+    vehicules: require('./img/vehicules.gif'),
 };
 
 

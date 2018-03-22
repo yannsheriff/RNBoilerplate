@@ -5,7 +5,8 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Button,
 } from 'react-native'
 
 import Images from '../assets/images'
@@ -17,14 +18,54 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {}
-export default class BoilComponent extends Component<Props> {
+
+export default class BoilComponent extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      changeScreen: this.props.changeScreen,
+      backgroundColor: '#FFD87B',
+      image: Images.slice
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    switch(nextProps.screenState.screen) {
+      case 0 : 
+        this.setState({
+          backgroundColor: '#FFD87B',
+          image: Images.slice
+        })
+        break
+      case 1 : 
+        this.setState({
+          backgroundColor: '#fff',
+          image: Images.astronaut
+        })
+        break
+      case 2 : 
+        this.setState({
+          backgroundColor: '#FF5A55',
+          image: Images.vehicules
+        })
+        break
+    }
+  }
+
   render() {
     return (
-      <View style={styles.container}>
+      <View style={{
+        backgroundColor: this.state.backgroundColor,    
+        height: screen.height,
+        flexDirection: 'column',
+        alignItems: 'center',
+        paddingTop: 50
+        }}>
         <Image
-          style={{width: 300, height: 300}}
-          source={Images.slice} 
+          style={{ width: 300, height: 300 }}
+          source={this.state.image}
         />
         <Text style={styles.welcome}>
           Welcome My React Native Boilerplate!
@@ -35,20 +76,16 @@ export default class BoilComponent extends Component<Props> {
         <Text style={styles.instructions}>
           {instructions}
         </Text>
+        <Button
+          onPress={this.state.changeScreen}
+          title={'Change color'}
+        />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    
-    backgroundColor: '#FFD87B',
-    height: screen.height, 
-    flexDirection: 'column',
-    alignItems: 'center',
-    paddingTop: 50
-  },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
