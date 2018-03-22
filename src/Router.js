@@ -5,25 +5,25 @@ import { StackNavigator } from 'react-navigation';
 
 // Scenes Imports
 // ----------------------------
-import App from './components/App';
+import BoilComponent from './components/BoilComponent';
 
 
 
 const InitialNavigator = StackNavigator({
   Home: {
-    screen: App
+    screen: BoilComponent
   }
 },
   {
     headerMode: 'none',
-    initialRouteName: 'LoginScreen',
+    initialRouteName: 'Home',
     cardStyle: {
       backgroundColor: 'transparent'
     }
   })
 
 
-  export default LoginNavigator
+  export default InitialNavigator
 
 
 
